@@ -1,0 +1,7 @@
+﻿portfolio_name,ticker,company_name,sector,buy_date,quantity,buy_price,exchange
+Growth,TCS.NS,TCS,IT,10/01/24,10,3400,NSE
+Growth,INFY.NS,Infosys,IT,15/02/24,15,1500,NSE
+Balanced,HDFCBANK.NS,HDFC Bank,Banking,05/03/24,8,1600,NSE
+Balanced,ICICIBANK.NS,ICICI Bank,Banking,20/02/24,12,1050,NSE
+Aggressive,RELIANCE.NS,Reliance,Energy,25/01/24,5,2500,NSE
+Aggressive,ADANIENT.NS,Adani Enterprises,Infrastructure,12/03/24,7,2900,NSE
