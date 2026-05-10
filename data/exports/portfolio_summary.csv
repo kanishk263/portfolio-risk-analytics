@@ -1,7 +1,7 @@
 Portfolio,Ticker,Company,Sector,Quantity,Buy Price,Current Price,Invested Amount,Current Value,Profit/Loss,Absolute Return %,CAGR %
-Growth,TCS.NS,TCS,IT,10,3400,2394.4,34000,23944,-10056,-29.58,-13.96
-Growth,INFY.NS,Infosys,IT,15,1500,1179.2,22500,17688,-4812,-21.39,-10.22
+Growth,TCS.NS,TCS,IT,10,3400,2394.4,34000,23944.0,-10056.0,-29.58,-13.96
+Growth,INFY.NS,Infosys,IT,15,1500,1179.2,22500,17688.0,-4812.0,-21.39,-10.22
 Balanced,HDFCBANK.NS,HDFC Bank,Banking,8,1600,780.85,12800,6246.8,-6553.2,-51.2,-28.03
 Balanced,ICICIBANK.NS,ICICI Bank,Banking,12,1050,1264.8,12600,15177.6,2577.6,20.46,8.75
-Aggressive,RELIANCE.NS,Reliance,Energy,5,2500,1435.2,12500,7176,-5324,-42.59,-21.52
+Aggressive,RELIANCE.NS,Reliance,Energy,5,2500,1435.2,12500,7176.0,-5324.0,-42.59,-21.52
 Aggressive,ADANIENT.NS,Adani Enterprises,Infrastructure,7,2900,2505.9,20300,17541.3,-2758.7,-13.59,-6.53
