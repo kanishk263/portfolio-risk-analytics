@@ -1,164 +1,224 @@
 # Family Investment Intelligence & Wealth Analytics Platform
 
-An automated portfolio analytics platform for tracking investment holdings, measuring performance, evaluating risk, comparing against market benchmarks, and exporting dashboard-ready wealth intelligence outputs.
+## Overview
 
-This project simulates a real-world family office or wealth analytics workflow: transaction and holdings data is ingested, market prices are fetched, analytics are calculated through modular Python engines, and outputs are exported for Excel, Power BI, and executive reporting.
+An automated multi-account investment analytics and wealth monitoring platform designed to simulate a real-world portfolio intelligence and family office analytics system.
 
-## Project Positioning
+The platform integrates:
 
-The platform is designed to demonstrate the intersection of finance, analytics, automation, quantitative risk analysis, and business intelligence.
+* financial analytics
+* portfolio performance evaluation
+* risk analytics
+* benchmark comparison
+* automation pipelines
+* executive dashboarding
 
-It is positioned as more than a basic return tracker. The goal is to build a scalable investment decision-support system that can eventually support multiple family members, accounts, brokers, asset classes, benchmarks, and automated reporting workflows.
+using Python, Excel, data visualization, and quantitative finance techniques.
 
-## Current Capabilities
+---
 
-- Fetches market data for listed portfolio holdings using `yfinance`
-- Tracks invested amount, current value, profit/loss, absolute return, and CAGR
-- Produces portfolio-level summaries across strategy buckets
-- Calculates annualized return, volatility, Sharpe ratio, and maximum drawdown
-- Generates sector allocation analytics
-- Builds correlation matrices and heatmap visuals
-- Compares portfolio return against benchmark index performance
-- Exports dashboard-ready CSV files and an Excel workbook
+# Project Objective
 
-## Target Platform Scope
+The objective of this project is to build a scalable investment analytics platform capable of:
 
-The long-term platform is intended to support:
+* managing multiple investment accounts
+* analyzing diversified financial instruments
+* generating risk and return analytics
+* benchmarking portfolio performance
+* automating market data workflows
+* creating executive-level dashboards
 
-- Individual and consolidated family portfolios
-- Broker-specific and account-specific investment views
-- Equity, mutual fund, ETF, fixed income, gold, and cash holdings
-- Performance, allocation, risk, benchmark, and insight dashboards
-- Automated market data, NAV, benchmark, analytics, and reporting refreshes
+The system is designed as a finance + analytics + automation project rather than a static dashboard.
 
-## Architecture
+---
+
+# Key Features
+
+## Multi-Account Investment Analytics
+
+* Family-level portfolio management
+* Individual account tracking
+* Consolidated investment analytics
+
+## Portfolio Performance Analytics
+
+* Invested amount
+* Current portfolio value
+* Profit/Loss
+* CAGR
+* Return %
+
+## Risk Analytics
+
+* Volatility
+* Sharpe Ratio
+* Maximum Drawdown
+* Correlation Analysis
+
+## Benchmark Comparison
+
+* NIFTY comparison
+* Portfolio outperformance analysis
+
+## Diversification Analytics
+
+* Sector allocation
+* Asset allocation
+* Concentration analysis
+
+## Automated Data Pipeline
+
+* Automated market data fetching
+* Automated analytics calculations
+* Automated dashboard exports
+
+## Executive Dashboard
+
+* KPI cards
+* Risk-return analysis
+* Benchmark visuals
+* Allocation insights
+
+---
+
+# Tech Stack
+
+## Programming & Analytics
+
+* Python
+* pandas
+* numpy
+* matplotlib
+* yfinance
+
+## Dashboarding
+
+* Excel Dashboard
+* Power BI (planned)
+
+## Data Management
+
+* CSV pipelines
+* SQL integration (planned)
+
+## Version Control
+
+* Git & GitHub
+
+---
+
+# Project Architecture
 
 ```text
-Investment Data
-      |
-      v
-Data Ingestion Layer
-      |
-      v
-Market Data Engine
-      |
-      v
+Portfolio Data
+      ↓
+Data Ingestion Pipeline
+      ↓
+Market Data Fetching
+      ↓
 Performance Analytics Engine
-      |
-      v
+      ↓
 Risk Analytics Engine
-      |
-      v
-Benchmark Analysis Engine
-      |
-      v
-Visualization and Dashboard Exports
-      |
-      v
-Executive Reporting and Insights
+      ↓
+Benchmark Comparison
+      ↓
+Visualization & Reporting
+      ↓
+Executive Dashboard
 ```
 
-## Repository Structure
+---
+
+# Current Functionalities
+
+* Automated market data fetching
+* Multi-account portfolio tracking
+* Portfolio return calculations
+* Risk analytics engine
+* Benchmark comparison
+* Correlation heatmap generation
+* Excel dashboard automation
+* Business insight generation
+
+---
+
+# Dashboard Preview
+
+(Add dashboard screenshot here)
+
+```markdown
+![Dashboard](assets/dashboard_screenshot.png)
+```
+
+---
+
+# Folder Structure
 
 ```text
-.
-|-- assets/                     # Generated charts and visual outputs
-|-- dashboard/                  # Excel dashboard output
-|-- data/
-|   |-- benchmark/              # Benchmark index data
-|   |-- exports/                # Analytics output datasets
-|   |-- processed/              # Processed market data by ticker
-|   `-- raw/                    # Input portfolio data
-|-- reports/                    # Project proposal and roadmap documentation
-|-- src/                        # Modular analytics pipeline scripts
-|-- main.py                     # End-to-end pipeline runner
-`-- requirements.txt            # Python dependencies
+portfolio-risk-analytics/
+│
+├── data/
+├── src/
+├── dashboard/
+├── assets/
+├── notebooks/
+├── reports/
+├── sql/
+├── tests/
+├── main.py
+├── requirements.txt
+└── README.md
 ```
 
-## Pipeline Modules
+---
 
-| Module | Purpose |
-| --- | --- |
-| `src/data_fetch.py` | Fetches historical market data for portfolio holdings |
-| `src/fetch_benchmark.py` | Fetches benchmark index data |
-| `src/combine_data.py` | Combines market data across holdings |
-| `src/calculations.py` | Calculates stock-level performance metrics |
-| `src/sector_analysis.py` | Generates sector allocation analytics |
-| `src/portfolio_summary.py` | Aggregates stock analytics to portfolio level |
-| `src/risk_metrics.py` | Calculates volatility, Sharpe ratio, return, and drawdown |
-| `src/correlation_analysis.py` | Creates correlation analytics across holdings |
-| `src/heatmap_visualization.py` | Generates correlation heatmap output |
-| `src/benchmark_analysis.py` | Compares portfolio performance against benchmark return |
-| `src/excel_export.py` | Exports analytics tables into an Excel dashboard workbook |
+# Automation Workflow
 
-## Outputs
-
-Generated outputs are written to:
-
-- `data/exports/portfolio_summary.csv`
-- `data/exports/portfolio_level_summary.csv`
-- `data/exports/risk_metrics.csv`
-- `data/exports/sector_allocation.csv`
-- `data/exports/correlation_matrix.csv`
-- `data/exports/benchmark_comparison.csv`
-- `dashboard/Portfolio_Analytics_Dashboard.xlsx`
-- `assets/correlation_heatmap.png`
-- `assets/sector_allocation.png`
-
-## Getting Started
-
-Create or activate a virtual environment, then install dependencies:
-
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+```text
+Update Portfolio CSV
+        ↓
+Run main.py
+        ↓
+Entire Analytics System Refreshes Automatically
 ```
 
-Run the full analytics pipeline:
+---
 
-```bash
-python main.py
-```
+# Future Enhancements
 
-The pipeline reads holdings from `data/raw/portfolio_data.csv`, fetches market and benchmark data, calculates analytics, and refreshes export files.
+* Power BI Dashboard
+* Monte Carlo Simulation
+* Portfolio Optimization
+* Efficient Frontier Analysis
+* Value at Risk (VaR)
+* SQL Database Integration
+* Automated PDF Reporting
 
-If you already have the project `venv` available, run:
+---
 
-```bash
-source venv/bin/activate
-python main.py
-```
+# Business Relevance
 
-## Data Input Format
+This project demonstrates practical integration of:
 
-The current raw portfolio file uses a simplified holdings format:
+* Finance
+* Analytics
+* Automation
+* Quantitative Risk Analysis
+* Business Intelligence
+* Dashboarding
 
-| Column | Description |
-| --- | --- |
-| `owner` | Family member, account, broker, or portfolio bucket |
-| `instrument_type` | `Stock` or `Mutual Fund` |
-| `stock_name` | Yahoo Finance symbol or supported alias |
-| `qty` | Units or shares held |
-| `avg_cost` | Average cost per unit |
-| `invested_amount` | Total amount invested |
+Applicable for:
 
-For detailed instructions on replacing the sample portfolio with your own real data, see [reports/DATA_INPUT_GUIDE.md](/Users/Kanishk/Desktop/portfolio-risk-analytics/reports/DATA_INPUT_GUIDE.md).
+* FP&A
+* Investment Analytics
+* Wealth Management
+* Consulting
+* Strategy & Analytics roles
 
-## Roadmap
+---
 
-Near-term development priorities:
+# Resume Positioning
 
-- Add account holder and broker fields to support family-level consolidation
-- Create a transaction-led data model for buys, sells, dividends, SIPs, and realized gains
-- Add XIRR, rolling returns, downside risk, beta, alpha, and Value at Risk
-- Support mutual funds, ETFs, fixed income, gold, and cash instruments
-- Add automated insight generation for concentration, underperformance, and allocation imbalance
-- Improve Excel/Power BI dashboard design with KPI cards, slicers, charts, and risk heatmaps
-- Add tests, configuration files, and stronger error handling around market data refreshes
+> Developed an automated Family Investment Intelligence & Wealth Analytics Platform integrating Python ETL pipelines, financial analytics, risk-adjusted return analysis, benchmark evaluation, and executive dashboard reporting.
 
-See [reports/PROJECT_ROADMAP.md](/Users/Kanishk/Desktop/portfolio-risk-analytics/reports/PROJECT_ROADMAP.md) for the full implementation plan.
-
-## Resume Positioning
-
-> Built an automated family investment intelligence and wealth analytics platform using Python, pandas, yfinance, Excel, and BI-ready data exports to track portfolio performance, evaluate risk, compare benchmarks, analyze diversification, and generate executive-level investment insights.
+---
