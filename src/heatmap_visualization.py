@@ -1,4 +1,8 @@
 import pandas as pd
+import os
+
+os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/matplotlib")
+
 import matplotlib.pyplot as plt
 
 # -----------------------------------

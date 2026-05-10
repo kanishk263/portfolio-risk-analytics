@@ -2,13 +2,15 @@ import pandas as pd
 import yfinance as yf
 from pathlib import Path
 
+from data_loader import load_portfolio_data
+
 # -----------------------------
 # Load Portfolio Dataset
 # -----------------------------
 
 portfolio_path = "data/raw/portfolio_data.csv"
 
-portfolio_df = pd.read_csv(portfolio_path)
+portfolio_df = load_portfolio_data(portfolio_path)
 
 # Extract unique tickers
 tickers = portfolio_df["ticker"].unique()

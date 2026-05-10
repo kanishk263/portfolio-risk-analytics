@@ -2,11 +2,13 @@ import pandas as pd
 import yfinance as yf
 from datetime import datetime
 
+from data_loader import load_portfolio_data
+
 # -----------------------------------
 # Load Portfolio Dataset
 # -----------------------------------
 
-portfolio_df = pd.read_csv("data/raw/portfolio_data.csv")
+portfolio_df = load_portfolio_data("data/raw/portfolio_data.csv")
 
 # -----------------------------------
 # Create Empty Results List

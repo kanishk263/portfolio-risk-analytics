@@ -1,6 +1,27 @@
+# Local environments
 venv/
+.venv/
+env/
+
+# Python cache/build output
 __pycache__/
 .ipynb_checkpoints/
-*.pyc
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Local OS/editor files
 .DS_Store
+Thumbs.db
 .env
+.env.*
+
+# Office temporary lock files
+~$*.xlsx
+~$*.xlsm
+~$*.docx
+~$*.pptx
+
+# Local scratch files
+.codex_work/
