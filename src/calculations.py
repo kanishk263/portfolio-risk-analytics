@@ -1,6 +1,6 @@
 import pandas as pd
 import yfinance as yf
-from datetime import datetime
+from pathlib import Path
 
 from data_loader import load_portfolio_data
 
@@ -16,31 +16,70 @@ portfolio_df = load_portfolio_data("data/raw/portfolio_data.csv")
 
 portfolio_summary = []
 
+
+def fetch_latest_price(ticker):
+    stock = yf.Ticker(ticker)
+    latest_history = stock.history(period="5d")
+    if not latest_history.empty:
+        return latest_history["Close"].dropna().iloc[-1], stock
+
+    processed_file = Path("data/processed") / f"{ticker.replace('.', '_')}.csv"
+    if processed_file.exists():
+        processed_df = pd.read_csv(processed_file)
+        if "Close" in processed_df.columns and not processed_df["Close"].dropna().empty:
+            return processed_df["Close"].dropna().iloc[-1], stock
+
+    raise ValueError("No latest or processed price data available")
+
+
+def enrich_instrument(stock, fallback_company, fallback_sector, instrument_type):
+    company = fallback_company
+    sector = fallback_sector
+
+    try:
+        info = stock.get_info()
+    except Exception:
+        info = {}
+
+    if info:
+        company = info.get("longName") or info.get("shortName") or company
+        if instrument_type.lower() == "mutual fund":
+            sector = info.get("category") or "Mutual Fund"
+        else:
+            sector = info.get("sector") or sector
+
+    if not sector:
+        sector = instrument_type
+
+    return company, sector
+
 # -----------------------------------
 # Calculate Portfolio Metrics
 # -----------------------------------
 
 for index, row in portfolio_df.iterrows():
 
-    ticker = row["ticker"]
-    company = row["company_name"]
-    portfolio = row["portfolio_name"]
-    sector = row["sector"]
+    ticker = row["Ticker"]
+    company = row["Company"]
+    portfolio = row["Portfolio"]
+    sector = row["Sector"]
+    instrument_type = row["Instrument Type"]
 
-    quantity = row["quantity"]
-    buy_price = row["buy_price"]
-    buy_date = row["buy_date"]
-
-    invested_amount = quantity * buy_price
+    quantity = row["Quantity"]
+    buy_price = row["Buy Price"]
+    invested_amount = row["Invested Amount"]
 
     print(f"\nProcessing {ticker}...")
 
     try:
 
-        # Fetch latest market price
-        stock = yf.Ticker(ticker)
-
-        latest_price = stock.history(period="1d")["Close"].iloc[-1]
+        latest_price, stock = fetch_latest_price(ticker)
+        company, sector = enrich_instrument(
+            stock,
+            company,
+            sector,
+            instrument_type,
+        )
 
         # Current portfolio value
         current_value = quantity * latest_price
@@ -51,26 +90,11 @@ for index, row in portfolio_df.iterrows():
         # Absolute Return %
         absolute_return = (profit_loss / invested_amount) * 100
 
-        # CAGR Calculation
-        buy_date_obj = datetime.strptime(buy_date, "%d/%m/%y")
-
-        holding_days = (datetime.today() - buy_date_obj).days
-
-        years_held = holding_days / 365
-
-        if years_held > 0:
-
-            cagr = (
-                ((current_value / invested_amount) ** (1 / years_held)) - 1
-            ) * 100
-
-        else:
-            cagr = 0
-
         # Append Results
         portfolio_summary.append({
 
             "Portfolio": portfolio,
+            "Instrument Type": instrument_type,
             "Ticker": ticker,
             "Company": company,
             "Sector": sector,
@@ -86,7 +110,7 @@ for index, row in portfolio_df.iterrows():
 
             "Absolute Return %": round(absolute_return, 2),
 
-            "CAGR %": round(cagr, 2)
+            "CAGR %": "N/A"
 
         })
 
@@ -100,7 +124,23 @@ for index, row in portfolio_df.iterrows():
 # Convert to DataFrame
 # -----------------------------------
 
-summary_df = pd.DataFrame(portfolio_summary)
+output_columns = [
+    "Portfolio",
+    "Instrument Type",
+    "Ticker",
+    "Company",
+    "Sector",
+    "Quantity",
+    "Buy Price",
+    "Current Price",
+    "Invested Amount",
+    "Current Value",
+    "Profit/Loss",
+    "Absolute Return %",
+    "CAGR %",
+]
+
+summary_df = pd.DataFrame(portfolio_summary, columns=output_columns)
 
 # -----------------------------------
 # Save Summary

@@ -132,18 +132,16 @@ python main.py
 
 ## Data Input Format
 
-The current raw portfolio file uses the following columns:
+The current raw portfolio file uses a simplified holdings format:
 
 | Column | Description |
 | --- | --- |
-| `portfolio_name` | Portfolio or strategy bucket |
-| `ticker` | Market ticker symbol |
-| `company_name` | Company or instrument name |
-| `sector` | Sector classification |
-| `buy_date` | Purchase date |
-| `quantity` | Units held |
-| `buy_price` | Purchase price per unit |
-| `exchange` | Exchange or market |
+| `owner` | Family member, account, broker, or portfolio bucket |
+| `instrument_type` | `Stock` or `Mutual Fund` |
+| `stock_name` | Yahoo Finance symbol or supported alias |
+| `qty` | Units or shares held |
+| `avg_cost` | Average cost per unit |
+| `invested_amount` | Total amount invested |
 
 For detailed instructions on replacing the sample portfolio with your own real data, see [reports/DATA_INPUT_GUIDE.md](/Users/Kanishk/Desktop/portfolio-risk-analytics/reports/DATA_INPUT_GUIDE.md).
 

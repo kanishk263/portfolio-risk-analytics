@@ -211,7 +211,10 @@ def add_dataframe(
                 fmt = money_format
             elif column in percent_cols:
                 fmt = percent_format
-            worksheet.write(start_row + row_idx + 1, start_col + col_idx, row[column], fmt)
+            value = row[column]
+            if pd.isna(value):
+                value = ""
+            worksheet.write(start_row + row_idx + 1, start_col + col_idx, value, fmt)
 
 
 def add_insights(worksheet, workbook, data: dict[str, pd.DataFrame]) -> None:
@@ -435,8 +438,8 @@ def build_dashboard(data: dict[str, pd.DataFrame]) -> None:
         chart5.add_series(
             {
                 "name": "Current Value",
-                "categories": "='Stock Analytics'!$B$2:$B$7",
-                "values": "='Stock Analytics'!$I$2:$I$7",
+                "categories": "='Stock Analytics'!$C$2:$C$7",
+                "values": "='Stock Analytics'!$J$2:$J$7",
                 "fill": {"color": COLORS["teal"]},
             }
         )
@@ -448,8 +451,8 @@ def build_dashboard(data: dict[str, pd.DataFrame]) -> None:
         chart6.add_series(
             {
                 "name": "Absolute Return %",
-                "categories": "='Stock Analytics'!$B$2:$B$7",
-                "values": "='Stock Analytics'!$K$2:$K$7",
+                "categories": "='Stock Analytics'!$C$2:$C$7",
+                "values": "='Stock Analytics'!$L$2:$L$7",
                 "fill": {"color": COLORS["teal"]},
             }
         )
